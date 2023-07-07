@@ -37,9 +37,13 @@ function App() {
   function handleSubmitScore() {
     if (userName && score > 0) {
       const newScore = { name: userName, score: timer };
-      setScoreboard((prevScoreboard) => [...prevScoreboard, newScore]);
+      const updatedScoreboard = [...scoreboard, newScore];
+
+      updatedScoreboard.sort((a, b) => a.score - b.score);
+
+      setScoreboard(updatedScoreboard);
       setUserName("");
-      setStatus("initial");
+      setStatus("scoreboard");
     }
   }
 
